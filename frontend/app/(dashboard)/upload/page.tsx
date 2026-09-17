@@ -86,25 +86,23 @@ export default function UploadPage() {
   };
 
   return (
-    <div class="flex flex-col gap-xl">
-      <header class="mb-sm">
-        <h1 class="font-headline-lg text-headline-lg text-primary">
+    <div className="flex flex-col gap-8">
+      <header>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
           Upload & Analyze Paper
         </h1>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-sm">
+        <p className="text-slate-500 mt-2 max-w-2xl">
           Submit a new question paper draft for archival similarity analysis and quality verification.
         </p>
       </header>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-        {/* Left Column: File Selection & Paper Metadata */}
-        <div class="lg:col-span-8 flex flex-col gap-xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-8 flex flex-col gap-6">
           <DropZone selectedFile={selectedFile} onFileSelected={setSelectedFile} />
           <MetadataForm values={metadata} onChange={setMetadata} />
         </div>
 
-        {/* Right Column: Processing State */}
-        <div class="lg:col-span-4 flex flex-col">
+        <div className="lg:col-span-4 flex flex-col">
           <AnalysisProgress
             isAnalyzing={isAnalyzing}
             progressPercent={progressPercent}
@@ -115,8 +113,7 @@ export default function UploadPage() {
         </div>
       </div>
 
-      {/* Global Action Bar */}
-      <div class="flex justify-end gap-md border-t border-outline-variant pt-lg mt-md">
+      <div className="flex justify-end gap-3 border-t border-slate-200 pt-6">
         <button
           type="button"
           onClick={() => {
@@ -124,7 +121,7 @@ export default function UploadPage() {
             setReportReady(false);
             setProgressPercent(0);
           }}
-          class="px-lg py-2 border border-outline-variant text-secondary rounded-full text-xs font-semibold hover:bg-surface-container-low transition-colors"
+          className="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-full text-sm font-semibold hover:bg-white transition-colors"
         >
           Cancel
         </button>
@@ -132,10 +129,10 @@ export default function UploadPage() {
           type="button"
           onClick={handleBeginAnalysis}
           disabled={!selectedFile || isAnalyzing || reportReady}
-          className={`px-lg py-2 rounded-full text-xs font-semibold transition-all ${
+          className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
             selectedFile && !isAnalyzing && !reportReady
-              ? "bg-primary text-on-primary hover:bg-primary-container cursor-pointer"
-              : "bg-surface-container-high text-on-surface-variant cursor-not-allowed opacity-50"
+              ? "bg-accent text-white hover:bg-primary cursor-pointer shadow-sm"
+              : "bg-slate-200 text-slate-400 cursor-not-allowed"
           }`}
         >
           {isAnalyzing ? "Scanning..." : reportReady ? "Analysis Complete" : "Begin Analysis"}

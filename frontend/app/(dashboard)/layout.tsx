@@ -4,11 +4,11 @@ import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div class="min-h-screen flex flex-col md:flex-row bg-background">
+    <div className="min-h-screen flex flex-col md:flex-row bg-background">
       <MobileHeader />
       <SidebarNav />
-      <div class="flex-1 md:ml-[240px] flex flex-col min-h-screen">
-        <main class="flex-1 p-margin pb-24 md:pb-margin max-w-[1440px] w-full mx-auto">
+      <div className="flex-1 md:ml-[260px] flex flex-col min-h-screen">
+        <main className="flex-1 p-5 md:p-8 pb-24 md:pb-8 max-w-[1440px] w-full mx-auto">
           {children}
         </main>
       </div>

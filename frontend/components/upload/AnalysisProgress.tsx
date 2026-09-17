@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { BarChart3, CheckCircle2, Eye, Loader2 } from "lucide-react";
 
 interface AnalysisProgressProps {
   isAnalyzing: boolean;
@@ -18,44 +19,45 @@ export default function AnalysisProgress({
   reportReady,
 }: AnalysisProgressProps) {
   return (
-    <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg relative h-full flex flex-col justify-between">
+    <section className="qpi-card p-6 h-full flex flex-col justify-between min-h-[420px]">
       <div>
-        <div class="absolute top-0 left-0 w-1 h-full bg-surface-variant"></div>
-        <h3 class="font-headline-sm text-headline-sm text-primary mb-md flex items-center gap-sm">
-          <span class="material-symbols-outlined text-primary-container">counter_3</span>
+        <h3 className="text-base font-semibold text-slate-900 mb-4 flex items-center gap-3">
+          <span className="qpi-step">3</span>
           Analysis Status
         </h3>
 
         {!isAnalyzing && !reportReady && (
-          <div class="flex-1 flex flex-col items-center justify-center opacity-60 text-center py-12">
-            <span class="material-symbols-outlined text-[48px] text-outline-variant mb-md">
-              analytics
-            </span>
-            <p class="text-sm text-on-surface-variant">
+          <div className="flex flex-col items-center justify-center text-center py-16">
+            <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-4">
+              <BarChart3 className="text-slate-400" size={32} strokeWidth={1.6} />
+            </div>
+            <p className="text-sm text-slate-500 max-w-[220px] leading-relaxed">
               Awaiting paper upload and submission to begin analysis.
             </p>
           </div>
         )}
 
         {(isAnalyzing || reportReady) && (
-          <div class="flex flex-col gap-4 py-4">
-            <div class="flex justify-between items-end">
-              <span class="text-xs font-semibold text-primary">{currentStep}</span>
-              <span class="text-xs text-on-surface-variant font-bold">{progressPercent}%</span>
+          <div className="flex flex-col gap-4 py-4">
+            <div className="flex justify-between items-end">
+              <span className="text-sm font-medium text-slate-800">{currentStep}</span>
+              <span className="text-sm text-accent font-bold">{progressPercent}%</span>
             </div>
 
-            <div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
               <div
-                class="h-full bg-primary-container transition-all duration-500 rounded-full"
+                className="h-full bg-accent transition-all duration-500 rounded-full"
                 style={{ width: `${progressPercent}%` }}
-              ></div>
+              />
             </div>
 
-            <div class="mt-4 p-3 bg-surface-container-low rounded-lg border border-outline-variant">
-              <div class="flex items-center gap-2 text-xs text-primary font-medium">
-                <span class="material-symbols-outlined text-base text-on-tertiary-container">
-                  {reportReady ? "check_circle" : "sync"}
-                </span>
+            <div className="mt-2 p-3 bg-slate-50 rounded-xl border border-slate-100">
+              <div className="flex items-center gap-2 text-sm text-slate-700 font-medium">
+                {reportReady ? (
+                  <CheckCircle2 className="text-emerald-600 shrink-0" size={18} />
+                ) : (
+                  <Loader2 className="text-accent shrink-0 animate-spin" size={18} />
+                )}
                 <span>
                   {reportReady
                     ? "Analysis complete. Question matches and originality score calculated."
@@ -70,9 +72,9 @@ export default function AnalysisProgress({
       {reportReady && (
         <button
           onClick={onViewReport}
-          class="w-full mt-6 bg-primary text-on-primary font-bold text-sm py-3 rounded-lg hover:bg-primary-container transition-colors flex items-center justify-center gap-2"
+          className="w-full mt-6 bg-accent text-white font-semibold text-sm py-3 rounded-xl hover:bg-primary transition-colors flex items-center justify-center gap-2"
         >
-          <span class="material-symbols-outlined text-base">visibility</span>
+          <Eye size={16} />
           View Originality & Match Report
         </button>
       )}

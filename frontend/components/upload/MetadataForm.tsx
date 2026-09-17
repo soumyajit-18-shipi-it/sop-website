@@ -17,7 +17,7 @@ interface MetadataFormProps {
 }
 
 export default function MetadataForm({ values, onChange }: MetadataFormProps) {
-  const handleChange = (field: keyof MetadataValues, val: any) => {
+  const handleChange = (field: keyof MetadataValues, val: string | number) => {
     onChange({
       ...values,
       [field]: val,
@@ -25,23 +25,22 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
   };
 
   return (
-    <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg relative">
-      <div class="absolute top-0 left-0 w-1 h-full bg-surface-variant"></div>
-      <h3 class="font-headline-sm text-headline-sm text-primary mb-md flex items-center gap-sm">
-        <span class="material-symbols-outlined text-primary-container">counter_2</span>
+    <section className="qpi-card p-6">
+      <h3 className="text-base font-semibold text-slate-900 mb-5 flex items-center gap-3">
+        <span className="qpi-step">2</span>
         Paper Metadata
       </h3>
 
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-md">
-        <div class="flex flex-col gap-xs">
-          <label class="text-xs font-semibold text-primary" htmlFor="academic-year">
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-1.5">
+          <label className="qpi-label" htmlFor="academic-year">
             Academic Year
           </label>
           <select
             id="academic-year"
             value={values.academicYear}
             onChange={(e) => handleChange("academicYear", e.target.value)}
-            class="border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+            className="qpi-input"
           >
             <option value="2025-2026">2025 - 2026</option>
             <option value="2024-2025">2024 - 2025</option>
@@ -49,15 +48,15 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
           </select>
         </div>
 
-        <div class="flex flex-col gap-xs">
-          <label class="text-xs font-semibold text-primary" htmlFor="department">
+        <div className="flex flex-col gap-1.5">
+          <label className="qpi-label" htmlFor="department">
             Department
           </label>
           <select
             id="department"
             value={values.department}
             onChange={(e) => handleChange("department", e.target.value)}
-            class="border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+            className="qpi-input"
           >
             <option value="Department of Physics">Department of Physics</option>
             <option value="Computer Science">Computer Science</option>
@@ -66,8 +65,8 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
           </select>
         </div>
 
-        <div class="flex flex-col gap-xs">
-          <label class="text-xs font-semibold text-primary" htmlFor="course-code">
+        <div className="flex flex-col gap-1.5">
+          <label className="qpi-label" htmlFor="course-code">
             Subject / Course Code
           </label>
           <input
@@ -76,20 +75,20 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
             value={values.courseCode}
             onChange={(e) => handleChange("courseCode", e.target.value)}
             placeholder="e.g. PHY-201"
-            class="border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+            className="qpi-input"
           />
         </div>
 
-        <div class="flex flex-col gap-xs">
-          <label class="text-xs font-semibold text-primary" htmlFor="exam-term">
+        <div className="flex flex-col gap-1.5">
+          <label className="qpi-label" htmlFor="exam-term">
             Term & Exam Type
           </label>
-          <div class="flex gap-2">
+          <div className="flex gap-2">
             <select
               id="exam-term"
               value={values.term}
               onChange={(e) => handleChange("term", e.target.value)}
-              class="flex-1 border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+              className="qpi-input flex-1"
             >
               <option value="Fall">Fall</option>
               <option value="Spring">Spring</option>
@@ -98,7 +97,7 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
             <select
               value={values.examType}
               onChange={(e) => handleChange("examType", e.target.value)}
-              class="flex-1 border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+              className="qpi-input flex-1"
             >
               <option value="Final Examination">Final Exam</option>
               <option value="Midterm Examination">Midterm</option>
@@ -107,8 +106,8 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
           </div>
         </div>
 
-        <div class="flex flex-col gap-xs md:col-span-2">
-          <label class="text-xs font-semibold text-primary" htmlFor="total-marks">
+        <div className="flex flex-col gap-1.5 md:col-span-2">
+          <label className="qpi-label" htmlFor="total-marks">
             Total Paper Marks
           </label>
           <input
@@ -117,7 +116,7 @@ export default function MetadataForm({ values, onChange }: MetadataFormProps) {
             value={values.totalMarks}
             onChange={(e) => handleChange("totalMarks", Number(e.target.value))}
             placeholder="100"
-            class="border border-outline-variant rounded p-2 bg-surface-container-lowest text-sm focus:border-primary outline-none"
+            className="qpi-input max-w-xs"
           />
         </div>
       </form>

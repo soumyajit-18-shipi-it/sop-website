@@ -1,31 +1,32 @@
 import Link from "next/link";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 export default function ReportPage({ params }: { params: { id: string } }) {
   return (
-    <div class="flex flex-col gap-lg">
-      <header class="flex items-center gap-4 border-b border-outline-variant pb-4">
-        <Link href="/upload" class="p-2 rounded-full hover:bg-surface-container-low text-on-surface-variant">
-          <span class="material-symbols-outlined">arrow_back</span>
+    <div className="flex flex-col gap-6">
+      <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
+        <Link href="/upload" className="p-2 rounded-full hover:bg-white text-slate-500">
+          <ArrowLeft size={20} />
         </Link>
         <div>
-          <h1 class="font-headline-md font-bold text-primary">Originality & Match Report</h1>
-          <p class="text-xs text-on-surface-variant">PHY-201 Final Examination Draft • Report ID: {params.id}</p>
+          <h1 className="text-2xl font-bold text-slate-900">Originality & Match Report</h1>
+          <p className="text-xs text-slate-500">PHY-201 Final Examination Draft · Report ID: {params.id}</p>
         </div>
       </header>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg text-center" style={{ borderTop: "4px solid #009c6b" }}>
-          <h3 class="text-sm font-semibold text-on-surface mb-2">Originality Score</h3>
-          <div class="text-display-lg font-bold text-primary my-4">88%</div>
-          <span class="inline-flex items-center gap-1 bg-on-tertiary-container/10 px-3 py-1 rounded-full text-on-tertiary-container text-xs font-semibold">
-            <span class="material-symbols-outlined filled text-xs">verified</span> High Originality
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="qpi-card p-6 text-center border-t-4 border-t-emerald-500">
+          <h3 className="text-sm font-semibold text-slate-700 mb-2">Originality Score</h3>
+          <div className="text-5xl font-bold text-slate-900 my-4">88%</div>
+          <span className="inline-flex items-center gap-1 bg-emerald-50 px-3 py-1 rounded-full text-emerald-700 text-xs font-semibold">
+            <ShieldCheck size={14} /> High Originality
           </span>
         </div>
 
-        <div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg flex flex-col justify-between">
-          <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Identified Repetitions</h3>
-          <div class="text-display-lg font-bold text-error my-2">3</div>
-          <p class="text-xs text-on-surface-variant">Questions matched from historical course archives (2019-2024)</p>
+        <div className="lg:col-span-2 qpi-card p-6 flex flex-col justify-between">
+          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Identified Repetitions</h3>
+          <div className="text-5xl font-bold text-red-600 my-2">3</div>
+          <p className="text-sm text-slate-500">Questions matched from historical course archives (2019-2024)</p>
         </div>
       </div>
     </div>

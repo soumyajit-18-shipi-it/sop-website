@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { FileUp, FileCheck2 } from "lucide-react";
 
 interface DropZoneProps {
   onFileSelected: (file: File) => void;
@@ -24,8 +25,7 @@ export default function DropZone({ onFileSelected, selectedFile }: DropZoneProps
     e.preventDefault();
     setIsDragOver(false);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      const file = e.dataTransfer.files[0];
-      validateAndSelect(file);
+      validateAndSelect(e.dataTransfer.files[0]);
     }
   };
 
@@ -36,7 +36,7 @@ export default function DropZone({ onFileSelected, selectedFile }: DropZoneProps
   };
 
   const validateAndSelect = (file: File) => {
-    const MAX_SIZE = 25 * 1024 * 1024; // 25MB
+    const MAX_SIZE = 25 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
       alert("File size exceeds maximum 25MB limit.");
       return;
@@ -50,10 +50,9 @@ export default function DropZone({ onFileSelected, selectedFile }: DropZoneProps
   };
 
   return (
-    <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg relative overflow-hidden group transition-all duration-300">
-      <div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
-      <h3 class="font-headline-sm text-headline-sm text-primary mb-md flex items-center gap-sm">
-        <span class="material-symbols-outlined text-primary-container">counter_1</span>
+    <section className="qpi-card p-6">
+      <h3 className="text-base font-semibold text-slate-900 mb-4 flex items-center gap-3">
+        <span className="qpi-step">1</span>
         File Selection
       </h3>
 
@@ -62,7 +61,7 @@ export default function DropZone({ onFileSelected, selectedFile }: DropZoneProps
         ref={fileInputRef}
         onChange={handleFileChange}
         accept=".pdf,.docx"
-        class="hidden"
+        className="hidden"
       />
 
       <div
@@ -70,42 +69,42 @@ export default function DropZone({ onFileSelected, selectedFile }: DropZoneProps
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`border-2 border-dashed rounded-lg p-xl flex flex-col items-center justify-center transition-colors cursor-pointer min-h-[220px] ${
+        className={`border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center transition-all cursor-pointer min-h-[220px] ${
           isDragOver
-            ? "border-primary-container bg-secondary-container/20"
+            ? "border-accent bg-blue-50"
             : selectedFile
-            ? "border-on-tertiary-container bg-surface-container-low"
-            : "border-outline-variant hover:border-primary-container bg-surface-container-low hover:bg-surface-container-lowest"
+            ? "border-emerald-300 bg-emerald-50/60"
+            : "border-slate-300 hover:border-accent hover:bg-blue-50/50 bg-slate-50/70"
         }`}
       >
-        <span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-md">
-          {selectedFile ? "verified" : "upload_file"}
-        </span>
+        {selectedFile ? (
+          <FileCheck2 className="text-emerald-600 mb-4" size={44} strokeWidth={1.6} />
+        ) : (
+          <FileUp className="text-accent mb-4" size={44} strokeWidth={1.6} />
+        )}
 
         {selectedFile ? (
-          <div class="text-center">
-            <p class="font-bold text-primary text-base">{selectedFile.name}</p>
-            <p class="text-xs text-on-surface-variant mt-1">
-              {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Ready for scan
+          <div className="text-center">
+            <p className="font-semibold text-slate-900 text-base">{selectedFile.name}</p>
+            <p className="text-sm text-slate-500 mt-1">
+              {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB · Ready for scan
             </p>
             <button
               type="button"
-              class="mt-3 text-xs bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-semibold"
+              className="mt-4 text-sm bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-full font-semibold hover:bg-slate-50"
             >
               Change File
             </button>
           </div>
         ) : (
-          <div class="text-center">
-            <p class="font-headline-sm text-headline-sm text-primary text-center">
-              Drag & Drop question paper here
+          <div className="text-center">
+            <p className="text-lg font-semibold text-slate-900">
+              Drag & drop question paper here
             </p>
-            <p class="text-xs text-on-surface-variant mt-1 text-center">
-              or browse for PDF or DOCX (Max 25MB)
-            </p>
+            <p className="text-sm text-slate-500 mt-1">PDF or DOCX · Max 25MB</p>
             <button
               type="button"
-              class="mt-4 bg-primary-container text-on-primary-container text-xs font-semibold px-4 py-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors"
+              className="mt-5 bg-accent text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary transition-colors shadow-sm"
             >
               Browse Files
             </button>

@@ -2,7 +2,7 @@ import React from "react";
 
 export function BentoGrid({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div class={`grid grid-cols-1 md:grid-cols-12 gap-gutter ${className}`}>
+    <div className={`grid grid-cols-1 md:grid-cols-12 gap-6 ${className}`}>
       {children}
     </div>
   );
@@ -27,7 +27,7 @@ export function BentoCard({
   const spanClass = colSpanClasses[colSpan] || "md:col-span-12";
 
   return (
-    <div className={`${spanClass} bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col justify-between ${className}`}>
+    <div className={`${spanClass} qpi-card p-6 flex flex-col justify-between ${className}`}>
       {children}
     </div>
   );
